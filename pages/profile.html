@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>色彩测试 - 个人中心</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .status-bar {
+            height: 44px;
+            background: #f8f8f8;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+            font-size: 12px;
+            color: #000;
+        }
+        .nav-bar {
+            height: 44px;
+            background: #f8f8f8;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .profile-header {
+            background: linear-gradient(135deg, #FFE5E5 0%, #FFF5E5 100%);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .history-item {
+            border-bottom: 1px solid #f0f0f0;
+            padding: 15px 0;
+        }
+        .history-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <div class="status-bar">
+        <span>9:41</span>
+        <div class="flex space-x-1">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+    
+    <div class="nav-bar">
+        <h1 class="text-lg font-medium">个人中心</h1>
+    </div>
+
+    <!-- 个人信息卡片 -->
+    <div class="profile-header">
+        <div class="flex items-center space-x-4">
+            <div class="w-20 h-20 rounded-full bg-white flex items-center justify-center">
+                <i class="fas fa-user text-3xl text-pink-500"></i>
+            </div>
+            <div>
+                <h2 class="text-xl font-semibold">小美</h2>
+                <p class="text-gray-600">春季型色彩达人</p>
+            </div>
+        </div>
+        <div class="mt-4 flex justify-around">
+            <div class="text-center">
+                <p class="text-2xl font-bold text-pink-500">12</p>
+                <p class="text-gray-600 text-sm">诊断次数</p>
+            </div>
+            <div class="text-center">
+                <p class="text-2xl font-bold text-pink-500">3</p>
+                <p class="text-gray-600 text-sm">收藏建议</p>
+            </div>
+            <div class="text-center">
+                <p class="text-2xl font-bold text-pink-500">8</p>
+                <p class="text-gray-600 text-sm">分享次数</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-4">
+        <!-- 功能列表 -->
+        <div class="bg-white rounded-xl shadow-sm p-4 mb-6">
+            <div class="space-y-4">
+                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-history text-pink-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">诊断历史</h4>
+                            <p class="text-gray-600 text-sm">查看历史诊断记录</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-bookmark text-pink-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">收藏建议</h4>
+                            <p class="text-gray-600 text-sm">查看收藏的穿搭建议</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-crown text-pink-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">会员特权</h4>
+                            <p class="text-gray-600 text-sm">开通会员享受更多服务</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- 最近诊断 -->
+        <div class="bg-white rounded-xl shadow-sm p-4">
+            <h3 class="text-lg font-semibold mb-4">最近诊断</h3>
+            <div class="space-y-4">
+                <div class="history-item">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-sun text-pink-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">春季型</h4>
+                                <p class="text-gray-600 text-sm">2024-03-26</p>
+                            </div>
+                        </div>
+                        <button class="text-pink-500 text-sm">查看详情</button>
+                    </div>
+                    <div class="flex space-x-2">
+                        <span class="px-2 py-1 bg-pink-100 text-pink-500 text-xs rounded-full">穿搭建议</span>
+                        <span class="px-2 py-1 bg-pink-100 text-pink-500 text-xs rounded-full">美妆建议</span>
+                    </div>
+                </div>
+                <div class="history-item">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-snowflake text-blue-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">冬季型</h4>
+                                <p class="text-gray-600 text-sm">2024-03-20</p>
+                            </div>
+                        </div>
+                        <button class="text-pink-500 text-sm">查看详情</button>
+                    </div>
+                    <div class="flex space-x-2">
+                        <span class="px-2 py-1 bg-blue-100 text-blue-500 text-xs rounded-full">穿搭建议</span>
+                        <span class="px-2 py-1 bg-blue-100 text-blue-500 text-xs rounded-full">美妆建议</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
+        <div class="flex justify-around">
+            <div class="text-center text-gray-400">
+                <i class="fas fa-home text-xl"></i>
+                <p class="text-xs mt-1">首页</p>
+            </div>
+            <div class="text-center text-gray-400">
+                <i class="fas fa-history text-xl"></i>
+                <p class="text-xs mt-1">历史</p>
+            </div>
+            <div class="text-center text-pink-500">
+                <i class="fas fa-user text-xl"></i>
+                <p class="text-xs mt-1">我的</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

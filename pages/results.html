@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>色彩测试 - 诊断结果</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .status-bar {
+            height: 44px;
+            background: #f8f8f8;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+            font-size: 12px;
+            color: #000;
+        }
+        .nav-bar {
+            height: 44px;
+            background: #f8f8f8;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            padding: 16px;
+        }
+        .color-item {
+            aspect-ratio: 1;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        .color-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <div class="status-bar">
+        <span>9:41</span>
+        <div class="flex space-x-1">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+    
+    <div class="nav-bar">
+        <h1 class="text-lg font-medium">诊断结果</h1>
+    </div>
+
+    <div class="p-4">
+        <!-- 季节类型卡片 -->
+        <div class="bg-gradient-to-r from-pink-500 to-orange-500 rounded-2xl p-6 text-white mb-6">
+            <div class="flex items-center justify-between mb-4">
+                <div>
+                    <h2 class="text-2xl font-bold">春季型</h2>
+                    <p class="text-white/80">温暖明亮的色彩类型</p>
+                </div>
+                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
+                    <i class="fas fa-sun text-2xl"></i>
+                </div>
+            </div>
+            <div class="flex space-x-4">
+                <div>
+                    <p class="text-sm opacity-80">适合明度</p>
+                    <p class="font-semibold">中高明度</p>
+                </div>
+                <div>
+                    <p class="text-sm opacity-80">适合饱和度</p>
+                    <p class="font-semibold">中高饱和度</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 推荐色板 -->
+        <div class="bg-white rounded-xl shadow-sm p-4 mb-6">
+            <h3 class="text-lg font-semibold mb-4">推荐色板</h3>
+            <div class="color-palette">
+                <div class="color-item" style="background: #FF6B6B"></div>
+                <div class="color-item" style="background: #FFD93D"></div>
+                <div class="color-item" style="background: #6BCB77"></div>
+                <div class="color-item" style="background: #FF8E8E"></div>
+                <div class="color-item" style="background: #FFB72B"></div>
+                <div class="color-item" style="background: #98D8AA"></div>
+                <div class="color-item" style="background: #FF9F9F"></div>
+                <div class="color-item" style="background: #FFD93D"></div>
+            </div>
+        </div>
+
+        <!-- 穿搭建议 -->
+        <div class="bg-white rounded-xl shadow-sm p-4 mb-6">
+            <h3 class="text-lg font-semibold mb-4">穿搭建议</h3>
+            <div class="space-y-4">
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-tshirt text-pink-500"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-medium">上衣选择</h4>
+                        <p class="text-gray-600 text-sm">建议选择珊瑚粉、蜜金色等温暖色调的上衣，避免深色系</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-socks text-pink-500"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-medium">下装搭配</h4>
+                        <p class="text-gray-600 text-sm">可以选择米色、浅卡其等柔和色调，营造温暖感</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-gem text-pink-500"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-medium">配饰选择</h4>
+                        <p class="text-gray-600 text-sm">金色、玫瑰金等温暖金属色最适合，珍珠也是不错的选择</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 美妆建议 -->
+        <div class="bg-white rounded-xl shadow-sm p-4 mb-6">
+            <h3 class="text-lg font-semibold mb-4">美妆建议</h3>
+            <div class="space-y-4">
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-lipstick text-pink-500"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-medium">唇妆</h4>
+                        <p class="text-gray-600 text-sm">珊瑚色、蜜桃色等温暖色调最适合，避免深色系</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-eye text-pink-500"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-medium">眼妆</h4>
+                        <p class="text-gray-600 text-sm">选择金色、蜜棕色等温暖色调，打造明亮感</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-paint-brush text-pink-500"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-medium">腮红</h4>
+                        <p class="text-gray-600 text-sm">珊瑚粉、蜜桃色等温暖色调最适合，打造好气色</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 分享按钮 -->
+        <button class="w-full bg-pink-500 text-white py-3 rounded-full flex items-center justify-center space-x-2 mb-20">
+            <i class="fas fa-share-alt"></i>
+            <span>分享诊断结果</span>
+        </button>
+    </div>
+
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
+        <div class="flex justify-around">
+            <div class="text-center text-gray-400">
+                <i class="fas fa-home text-xl"></i>
+                <p class="text-xs mt-1">首页</p>
+            </div>
+            <div class="text-center text-pink-500">
+                <i class="fas fa-history text-xl"></i>
+                <p class="text-xs mt-1">历史</p>
+            </div>
+            <div class="text-center text-gray-400">
+                <i class="fas fa-user text-xl"></i>
+                <p class="text-xs mt-1">我的</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
