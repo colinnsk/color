@@ -3,121 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>色彩测试 - 首页</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>首页 - 色彩测试</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .status-bar {
-            height: 44px;
-            background: #f8f8f8;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 15px;
-            font-size: 12px;
-            color: #000;
+        .gradient-bg {
+            background: linear-gradient(135deg, #FF6B81 0%, #5D68E2 100%);
         }
-        .nav-bar {
-            height: 44px;
-            background: #f8f8f8;
-            display: flex;
-            align-items: center;
-            padding: 0 15px;
-            border-bottom: 1px solid #eee;
-        }
-        .upload-area {
-            background: linear-gradient(135deg, #FFE5E5 0%, #FFF5E5 100%);
-            border-radius: 20px;
-            padding: 30px;
-            margin: 20px;
-            text-align: center;
-        }
-        .upload-icon {
-            width: 80px;
-            height: 80px;
-            background: rgba(255,255,255,0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
+        .card-shadow {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
     </style>
 </head>
-<body class="bg-white">
-    <div class="status-bar">
-        <span>9:41</span>
-        <div class="flex space-x-1">
-            <i class="fas fa-signal"></i>
-            <i class="fas fa-wifi"></i>
-            <i class="fas fa-battery-full"></i>
+<body class="bg-gray-50">
+    <div class="min-h-full">
+        <!-- 顶部banner -->
+        <div class="gradient-bg text-white p-6 rounded-b-3xl">
+            <h1 class="text-2xl font-bold mb-2">色彩知己</h1>
+            <p class="text-sm opacity-90">30秒了解你的专属色彩，告别穿搭纠结</p>
         </div>
-    </div>
-    
-    <div class="nav-bar">
-        <h1 class="text-lg font-medium">色彩测试</h1>
-    </div>
 
-    <div class="p-4">
-        <div class="upload-area">
-            <div class="upload-icon">
-                <i class="fas fa-camera text-3xl text-pink-500"></i>
-            </div>
-            <h2 class="text-xl font-semibold mb-2">上传照片</h2>
-            <p class="text-gray-600 mb-6">请上传一张清晰的正面照片，我们将为您进行专业的色彩分析</p>
-            <div class="space-y-3">
-                <button class="w-full bg-pink-500 text-white py-3 rounded-full flex items-center justify-center space-x-2">
-                    <i class="fas fa-camera"></i>
-                    <span>拍照</span>
-                </button>
-                <button class="w-full bg-white text-pink-500 py-3 rounded-full border-2 border-pink-500 flex items-center justify-center space-x-2">
-                    <i class="fas fa-images"></i>
-                    <span>从相册选择</span>
+        <!-- 主视觉区域 -->
+        <div class="px-6 mt-6">
+            <div class="bg-white rounded-2xl p-6 card-shadow">
+                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" 
+                     alt="色彩测试示例" 
+                     class="w-full h-48 object-cover rounded-xl mb-4">
+                <h2 class="text-xl font-bold text-gray-800 mb-2">发现你的专属色彩</h2>
+                <p class="text-gray-600 text-sm mb-4">基于四季色彩理论，AI智能分析你的面部特征，为你提供专业的色彩搭配建议。</p>
+                <button class="w-full bg-gradient-to-r from-pink-500 to-purple-500 text-white py-3 rounded-xl font-medium">
+                    开始测试
                 </button>
             </div>
         </div>
 
-        <div class="mt-8 px-4">
-            <h3 class="text-lg font-medium mb-4">使用说明</h3>
-            <div class="space-y-4">
-                <div class="flex items-start space-x-3">
-                    <div class="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center text-pink-500">1</div>
-                    <div>
-                        <h4 class="font-medium">上传照片</h4>
-                        <p class="text-gray-600 text-sm">选择一张清晰的正面照片，确保光线充足</p>
-                    </div>
+        <!-- 功能介绍 -->
+        <div class="px-6 mt-6">
+            <h3 class="text-lg font-bold text-gray-800 mb-4">功能介绍</h3>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-white p-4 rounded-xl card-shadow">
+                    <i class="fas fa-palette text-2xl text-pink-500 mb-2"></i>
+                    <h4 class="font-medium text-gray-800">色彩分析</h4>
+                    <p class="text-xs text-gray-600 mt-1">AI智能分析面部特征</p>
                 </div>
-                <div class="flex items-start space-x-3">
-                    <div class="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center text-pink-500">2</div>
-                    <div>
-                        <h4 class="font-medium">智能分析</h4>
-                        <p class="text-gray-600 text-sm">系统将自动分析您的面部特征和肤色</p>
-                    </div>
+                <div class="bg-white p-4 rounded-xl card-shadow">
+                    <i class="fas fa-tshirt text-2xl text-blue-500 mb-2"></i>
+                    <h4 class="font-medium text-gray-800">穿搭建议</h4>
+                    <p class="text-xs text-gray-600 mt-1">个性化色彩搭配方案</p>
                 </div>
-                <div class="flex items-start space-x-3">
-                    <div class="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center text-pink-500">3</div>
-                    <div>
-                        <h4 class="font-medium">获取报告</h4>
-                        <p class="text-gray-600 text-sm">获得专业的色彩诊断和穿搭建议</p>
-                    </div>
+                <div class="bg-white p-4 rounded-xl card-shadow">
+                    <i class="fas fa-magic text-2xl text-purple-500 mb-2"></i>
+                    <h4 class="font-medium text-gray-800">彩妆推荐</h4>
+                    <p class="text-xs text-gray-600 mt-1">适合你的彩妆色系</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl card-shadow">
+                    <i class="fas fa-share-alt text-2xl text-green-500 mb-2"></i>
+                    <h4 class="font-medium text-gray-800">分享好友</h4>
+                    <p class="text-xs text-gray-600 mt-1">邀请好友一起测试</p>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
-        <div class="flex justify-around">
-            <div class="text-center text-pink-500">
-                <i class="fas fa-home text-xl"></i>
-                <p class="text-xs mt-1">首页</p>
-            </div>
-            <div class="text-center text-gray-400">
-                <i class="fas fa-history text-xl"></i>
-                <p class="text-xs mt-1">历史</p>
-            </div>
-            <div class="text-center text-gray-400">
-                <i class="fas fa-user text-xl"></i>
-                <p class="text-xs mt-1">我的</p>
+        <!-- 用户评价 -->
+        <div class="px-6 mt-6 mb-6">
+            <h3 class="text-lg font-bold text-gray-800 mb-4">用户评价</h3>
+            <div class="bg-white p-4 rounded-xl card-shadow">
+                <div class="flex items-center mb-3">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=60" 
+                         alt="用户头像" 
+                         class="w-10 h-10 rounded-full mr-3">
+                    <div>
+                        <h4 class="font-medium text-gray-800">小美</h4>
+                        <div class="flex text-yellow-400 text-sm">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-600">测试结果很准确，推荐的色彩搭配让我眼前一亮，现在买衣服再也不会纠结了！</p>
             </div>
         </div>
     </div>

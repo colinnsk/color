@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分析中 - 色彩测试</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #FF6B81 0%, #5D68E2 100%);
+        }
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background-color: white;
+            animation: progress 2s ease-in-out infinite;
+        }
+        @keyframes progress {
+            0% { width: 0%; }
+            50% { width: 100%; }
+            100% { width: 0%; }
+        }
+        .analyzing-dot {
+            animation: dot 1.5s infinite;
+        }
+        .analyzing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .analyzing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes dot {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+        .feature-card {
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-full">
+        <!-- 顶部标题 -->
+        <div class="gradient-bg text-white p-6">
+            <h1 class="text-xl font-bold">AI正在分析你的色彩</h1>
+            <p class="text-sm opacity-90 mt-1">请稍等片刻，正在生成你的专属色彩报告</p>
+        </div>
+
+        <!-- 进度展示 -->
+        <div class="px-6 mt-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm">
+                <div class="flex items-center justify-center mb-4">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 flex items-center justify-center">
+                        <i class="fas fa-magic text-white text-2xl"></i>
+                    </div>
+                </div>
+                <div class="text-center mb-4">
+                    <h2 class="text-lg font-bold text-gray-800">分析中<span class="analyzing-dot">.</span><span class="analyzing-dot">.</span><span class="analyzing-dot">.</span></h2>
+                    <p class="text-sm text-gray-500 mt-1">正在分析面部特征和色彩数据</p>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 分析步骤 -->
+        <div class="px-6 mt-6">
+            <div class="grid grid-cols-3 gap-4">
+                <div class="feature-card bg-white rounded-xl p-4 text-center">
+                    <div class="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-face-smile text-pink-500"></i>
+                    </div>
+                    <p class="text-sm text-gray-600">面部特征识别</p>
+                </div>
+                <div class="feature-card bg-white rounded-xl p-4 text-center">
+                    <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-palette text-blue-500"></i>
+                    </div>
+                    <p class="text-sm text-gray-600">色彩数据提取</p>
+                </div>
+                <div class="feature-card bg-white rounded-xl p-4 text-center">
+                    <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-brain text-purple-500"></i>
+                    </div>
+                    <p class="text-sm text-gray-600">AI智能分析</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 趣味知识卡片 -->
+        <div class="px-6 mt-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">色彩小知识</h3>
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 rounded-full bg-pink-100 flex items-center justify-center mr-3">
+                            <i class="fas fa-lightbulb text-pink-500"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">四季色彩理论将人的肤色分为春夏秋冬四种类型，每种类型都有其独特的色彩搭配方案。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                            <i class="fas fa-paint-brush text-blue-500"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">正确的色彩搭配可以提升气色，让整体形象更加和谐统一。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部提示 -->
+        <div class="fixed bottom-0 left-0 right-0 p-6 bg-white border-t">
+            <p class="text-sm text-gray-500 text-center">分析过程大约需要30秒，请耐心等待</p>
+        </div>
+    </div>
+</body>
+</html> 
