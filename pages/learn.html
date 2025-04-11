@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>色彩知识 - 色彩测试</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .learn-container {
+            min-height: 100vh;
+            background: #f8f9fa;
+        }
+        .lesson-card {
+            background: white;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        .lesson-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .progress-bar {
+            height: 4px;
+            background: #eee;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FF6B81, #5D68E2);
+            transition: width 0.3s ease;
+        }
+        .season-card {
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+        .season-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 12px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="learn-container">
+        <!-- 顶部导航 -->
+        <div class="fixed top-0 left-0 right-0 bg-white z-10 border-b">
+            <div class="flex items-center justify-between p-4">
+                <button class="text-gray-500" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1 class="text-lg font-bold text-gray-800">色彩知识</h1>
+                <button class="text-gray-500" onclick="showMenu()">
+                    <i class="fas fa-ellipsis-v"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 主要内容 -->
+        <div class="pt-16 pb-20 px-4">
+            <!-- 学习进度 -->
+            <div class="bg-white rounded-2xl p-4 mb-6">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="font-bold text-gray-800">学习进度</h3>
+                    <span class="text-sm text-gray-500">3/10 课</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 30%;"></div>
+                </div>
+            </div>
+
+            <!-- 四季色彩理论 -->
+            <div class="mb-6">
+                <h3 class="text-lg font-bold text-gray-800 mb-3">四季色彩理论</h3>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="season-card" onclick="viewLesson('spring')">
+                        <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=60" 
+                             alt="春季型" 
+                             class="w-full h-32 object-cover">
+                        <div class="season-overlay">
+                            <h4 class="font-bold">春季型</h4>
+                            <p class="text-xs opacity-80">温暖明亮</p>
+                        </div>
+                    </div>
+                    <div class="season-card" onclick="viewLesson('summer')">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=60" 
+                             alt="夏季型" 
+                             class="w-full h-32 object-cover">
+                        <div class="season-overlay">
+                            <h4 class="font-bold">夏季型</h4>
+                            <p class="text-xs opacity-80">柔和冷静</p>
+                        </div>
+                    </div>
+                    <div class="season-card" onclick="viewLesson('autumn')">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=60" 
+                             alt="秋季型" 
+                             class="w-full h-32 object-cover">
+                        <div class="season-overlay">
+                            <h4 class="font-bold">秋季型</h4>
+                            <p class="text-xs opacity-80">温暖深沉</p>
+                        </div>
+                    </div>
+                    <div class="season-card" onclick="viewLesson('winter')">
+                        <img src="https://images.unsplash.com/photo-1517299321609-52687d1bc55a?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=60" 
+                             alt="冬季型" 
+                             class="w-full h-32 object-cover">
+                        <div class="season-overlay">
+                            <h4 class="font-bold">冬季型</h4>
+                            <p class="text-xs opacity-80">鲜明冷冽</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 课程列表 -->
+            <div class="space-y-3">
+                <div class="lesson-card p-4" onclick="viewLesson('color-basics')">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-lg bg-pink-100 flex items-center justify-center">
+                            <i class="fas fa-palette text-pink-500"></i>
+                        </div>
+                        <div class="ml-4 flex-1">
+                            <h4 class="font-medium text-gray-800">色彩基础知识</h4>
+                            <p class="text-xs text-gray-500">了解色彩的基本原理</p>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400"></i>
+                    </div>
+                </div>
+                <div class="lesson-card p-4" onclick="viewLesson('color-matching')">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-tshirt text-blue-500"></i>
+                        </div>
+                        <div class="ml-4 flex-1">
+                            <h4 class="font-medium text-gray-800">色彩搭配技巧</h4>
+                            <p class="text-xs text-gray-500">学习实用的搭配方法</p>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400"></i>
+                    </div>
+                </div>
+                <div class="lesson-card p-4" onclick="viewLesson('style-guide')">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center">
+                            <i class="fas fa-star text-purple-500"></i>
+                        </div>
+                        <div class="ml-4 flex-1">
+                            <h4 class="font-medium text-gray-800">个人风格指南</h4>
+                            <p class="text-xs text-gray-500">打造专属风格</p>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部导航 -->
+        <div class="fixed bottom-0 left-0 right-0 bg-white border-t p-4">
+            <div class="flex justify-around">
+                <button class="text-gray-500" onclick="goHome()">
+                    <i class="fas fa-home"></i>
+                    <span class="text-xs block mt-1">首页</span>
+                </button>
+                <button class="text-gray-500" onclick="goTest()">
+                    <i class="fas fa-camera"></i>
+                    <span class="text-xs block mt-1">测试</span>
+                </button>
+                <button class="text-pink-500" onclick="goProfile()">
+                    <i class="fas fa-user"></i>
+                    <span class="text-xs block mt-1">我的</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function showMenu() {
+            alert('菜单功能开发中');
+        }
+
+        function viewLesson(lessonId) {
+            alert(`查看课程: ${lessonId}`);
+        }
+
+        function goHome() {
+            window.location.href = 'home.html';
+        }
+
+        function goTest() {
+            window.location.href = 'test.html';
+        }
+
+        function goProfile() {
+            window.location.href = 'profile.html';
+        }
+    </script>
+</body>
+</html> 

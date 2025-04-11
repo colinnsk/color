@@ -7,158 +7,219 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .gradient-bg {
-            background: linear-gradient(135deg, #FF6B81 0%, #5D68E2 100%);
+        .profile-container {
+            min-height: 100vh;
+            background: #f8f9fa;
+        }
+        .latest-test {
+            background: linear-gradient(135deg, #FF6B81, #5D68E2);
+            color: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        .history-list {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+        }
+        .history-item {
+            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+        }
+        .history-item:last-child {
+            border-bottom: none;
         }
         .color-circle {
-            width: 24px;
-            height: 24px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            display: inline-block;
-            margin-right: 8px;
+            margin-right: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+        .latest-test .color-circle {
+            border: 2px solid white;
+        }
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
         }
     </style>
 </head>
-<body class="bg-gray-50">
-    <div class="min-h-full">
-        <!-- 用户信息 -->
-        <div class="gradient-bg text-white p-6">
-            <div class="flex items-center">
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=60" 
-                     alt="用户头像" 
-                     class="w-16 h-16 rounded-full border-2 border-white">
-                <div class="ml-4">
-                    <h2 class="text-xl font-bold">小美</h2>
-                    <p class="text-sm opacity-90">已进行3次色彩测试</p>
-                </div>
+<body>
+    <div class="profile-container">
+        <!-- 顶部导航 -->
+        <div class="fixed top-0 left-0 right-0 bg-white z-10 border-b">
+            <div class="flex items-center justify-between p-4">
+                <button class="text-gray-500" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1 class="text-lg font-bold text-gray-800">个人中心</h1>
+                <button class="text-gray-500" onclick="showMenu()">
+                    <i class="fas fa-ellipsis-h"></i>
+                </button>
             </div>
         </div>
 
-        <!-- 最新测试结果 -->
-        <div class="px-6 mt-6">
-            <div class="bg-white rounded-2xl p-6 shadow-sm">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-lg font-bold text-gray-800">最新测试结果</h3>
-                    <span class="text-sm text-pink-500">2023-04-10</span>
-                </div>
-                <div class="mb-4">
-                    <div class="flex items-center mb-2">
-                        <span class="text-lg font-bold text-gray-800 mr-2">春季型</span>
-                        <span class="text-sm text-gray-500">温暖明亮</span>
-                    </div>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <div class="color-circle bg-pink-200"></div>
-                        <div class="color-circle bg-orange-200"></div>
-                        <div class="color-circle bg-yellow-200"></div>
-                        <div class="color-circle bg-green-200"></div>
-                        <div class="color-circle bg-blue-200"></div>
-                    </div>
-                </div>
-                <div class="flex justify-between">
-                    <button class="text-pink-500 text-sm">
-                        <i class="fas fa-share-alt mr-1"></i>分享结果
-                    </button>
-                    <button class="text-gray-500 text-sm">
-                        <i class="fas fa-ellipsis-h"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- 测试历史 -->
-        <div class="px-6 mt-6">
-            <h3 class="text-lg font-bold text-gray-800 mb-4">测试历史</h3>
-            <div class="space-y-4">
-                <div class="bg-white rounded-xl p-4 shadow-sm">
-                    <div class="flex justify-between items-center mb-2">
-                        <span class="text-sm text-gray-500">2023-04-10</span>
-                        <span class="text-sm text-pink-500">春季型</span>
-                    </div>
-                    <p class="text-sm text-gray-600 mb-2">温暖明亮，充满活力</p>
-                    <div class="flex justify-end space-x-2">
-                        <button class="text-gray-400 text-sm">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                        <button class="text-gray-400 text-sm">
-                            <i class="fas fa-share-alt"></i>
-                        </button>
-                        <button class="text-gray-400 text-sm">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl p-4 shadow-sm">
-                    <div class="flex justify-between items-center mb-2">
-                        <span class="text-sm text-gray-500">2023-03-15</span>
-                        <span class="text-sm text-blue-500">夏季型</span>
-                    </div>
-                    <p class="text-sm text-gray-600 mb-2">柔和冷静，蓝调优雅</p>
-                    <div class="flex justify-end space-x-2">
-                        <button class="text-gray-400 text-sm">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                        <button class="text-gray-400 text-sm">
-                            <i class="fas fa-share-alt"></i>
-                        </button>
-                        <button class="text-gray-400 text-sm">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl p-4 shadow-sm">
-                    <div class="flex justify-between items-center mb-2">
-                        <span class="text-sm text-gray-500">2023-02-20</span>
-                        <span class="text-sm text-orange-500">秋季型</span>
-                    </div>
-                    <p class="text-sm text-gray-600 mb-2">温暖深沉，橙棕调</p>
-                    <div class="flex justify-end space-x-2">
-                        <button class="text-gray-400 text-sm">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                        <button class="text-gray-400 text-sm">
-                            <i class="fas fa-share-alt"></i>
-                        </button>
-                        <button class="text-gray-400 text-sm">
-                            <i class="fas fa-trash"></i>
-                        </button>
+        <!-- 主要内容 -->
+        <div class="pt-16 px-4 pb-4">
+            <!-- 用户信息 -->
+            <div class="bg-white rounded-2xl p-4 mb-6">
+                <div class="flex items-center">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=60" 
+                         alt="用户头像" 
+                         class="w-16 h-16 rounded-full object-cover">
+                    <div class="ml-4">
+                        <h2 class="text-xl font-bold text-gray-800">张小姐</h2>
+                        <p class="text-sm text-gray-500">已进行3次测试</p>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- 功能列表 -->
-        <div class="px-6 mt-6 mb-8">
-            <div class="bg-white rounded-2xl overflow-hidden">
-                <div class="p-4 border-b flex items-center justify-between">
-                    <div class="flex items-center">
-                        <i class="fas fa-star text-yellow-400 mr-3"></i>
-                        <span class="text-gray-800">我的收藏</span>
+            <!-- 测试记录 -->
+            <div class="test-history">
+                <!-- 最新测试结果 -->
+                <div class="latest-test">
+                    <!-- 头部信息 -->
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="badge">最新测试</span>
+                        <span class="text-sm">2024-03-20</span>
                     </div>
-                    <i class="fas fa-chevron-right text-gray-400"></i>
+                    <!-- 内容区域 - 使用flex-col在小屏幕上自动换行 -->
+                    <div class="flex flex-col space-y-4">
+                        <!-- 色彩类型信息 -->
+                        <div class="flex items-center">
+                            <div class="color-circle flex-shrink-0" style="background: #FF6B81"></div>
+                            <div class="min-w-0">
+                                <h3 class="text-lg font-bold truncate">春季型</h3>
+                                <p class="text-sm opacity-80 truncate">温暖明亮的色彩最适合你</p>
+                            </div>
+                        </div>
+                        <!-- 操作按钮 - 使用flex-wrap允许按钮自然换行 -->
+                        <div class="flex flex-wrap gap-2">
+                            <button class="inline-flex items-center bg-white bg-opacity-20 px-4 py-2 rounded-full text-sm" 
+                                    onclick="viewTest('latest')">
+                                <i class="fas fa-eye mr-2"></i>
+                                查看详情
+                            </button>
+                            <button class="inline-flex items-center bg-white bg-opacity-20 px-4 py-2 rounded-full text-sm" 
+                                    onclick="shareTest('latest')">
+                                <i class="fas fa-share mr-2"></i>
+                                分享
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="p-4 border-b flex items-center justify-between">
-                    <div class="flex items-center">
-                        <i class="fas fa-share-alt text-green-500 mr-3"></i>
-                        <span class="text-gray-800">邀请好友</span>
+
+                <!-- 历史记录 -->
+                <div class="history-list">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">历史记录</h3>
+                    <div class="history-item">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm text-gray-500">2024-03-15</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="color-circle" style="background: #5D68E2"></div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">夏季型</h4>
+                                </div>
+                            </div>
+                            <button class="text-gray-500" onclick="viewTest('1')">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
                     </div>
-                    <i class="fas fa-chevron-right text-gray-400"></i>
+                    <div class="history-item">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm text-gray-500">2024-03-10</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="color-circle" style="background: #FFB74D"></div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">秋季型</h4>
+                                </div>
+                            </div>
+                            <button class="text-gray-500" onclick="viewTest('2')">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="p-4 border-b flex items-center justify-between">
-                    <div class="flex items-center">
-                        <i class="fas fa-question-circle text-blue-500 mr-3"></i>
-                        <span class="text-gray-800">帮助与反馈</span>
+            </div>
+
+            <!-- 功能列表 -->
+            <div class="mt-6 space-y-4">
+                <div class="bg-white rounded-2xl p-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-lg bg-pink-100 flex items-center justify-center">
+                                <i class="fas fa-heart text-pink-500"></i>
+                            </div>
+                            <div class="ml-4">
+                                <span class="text-gray-800 font-medium">我的收藏</span>
+                                <p class="text-xs text-gray-500 mt-1">搭配灵感/商品收藏</p>
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400"></i>
                     </div>
-                    <i class="fas fa-chevron-right text-gray-400"></i>
                 </div>
-                <div class="p-4 flex items-center justify-between">
-                    <div class="flex items-center">
-                        <i class="fas fa-info-circle text-purple-500 mr-3"></i>
-                        <span class="text-gray-800">关于我们</span>
+                <div class="bg-white rounded-2xl p-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+                                <i class="fas fa-user-friends text-blue-500"></i>
+                            </div>
+                            <span class="ml-4 text-gray-800">邀请好友</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400"></i>
                     </div>
-                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+                <div class="bg-white rounded-2xl p-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center">
+                                <i class="fas fa-question-circle text-green-500"></i>
+                            </div>
+                            <span class="ml-4 text-gray-800">帮助与反馈</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400"></i>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center">
+                                <i class="fas fa-info-circle text-purple-500"></i>
+                            </div>
+                            <span class="ml-4 text-gray-800">关于我们</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400"></i>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function showMenu() {
+            alert('菜单功能开发中');
+        }
+
+        function viewTest(testId) {
+            alert(`查看测试结果: ${testId}`);
+        }
+
+        function shareTest(testId) {
+            alert(`分享测试结果: ${testId}`);
+        }
+    </script>
 </body>
 </html> 

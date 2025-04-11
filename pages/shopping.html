@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物建议 - 色彩测试</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .shopping-container {
+            min-height: 100vh;
+            background: #f8f9fa;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        .category-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .color-tag {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-right: 4px;
+            margin-bottom: 4px;
+        }
+        .item-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .item-image {
+            height: 120px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="shopping-container">
+        <!-- 顶部导航 -->
+        <div class="fixed top-0 left-0 right-0 bg-white z-10 border-b">
+            <div class="flex items-center justify-between p-4">
+                <button class="text-gray-500" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1 class="text-lg font-bold text-gray-800">购物建议</h1>
+                <button class="text-gray-500" onclick="showFilter()">
+                    <i class="fas fa-filter"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 主要内容 -->
+        <div class="pt-16 pb-20 px-4">
+            <!-- 色彩类型提示 -->
+            <div class="bg-gradient-to-r from-pink-500 to-purple-500 rounded-2xl p-4 text-white mb-6">
+                <div class="flex items-center">
+                    <div class="w-12 h-12 rounded-full bg-white bg-opacity-20 flex items-center justify-center text-xl font-bold">
+                        春
+                    </div>
+                    <div class="ml-4">
+                        <h2 class="text-xl font-bold">春季型购物指南</h2>
+                        <p class="text-sm opacity-80">温暖明亮的色彩最适合你</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 推荐颜色 -->
+            <div class="mb-6">
+                <h3 class="text-lg font-bold text-gray-800 mb-3">推荐颜色</h3>
+                <div class="flex flex-wrap">
+                    <div class="color-tag" style="background-color: #FFB6C1; color: white;">珊瑚粉</div>
+                    <div class="color-tag" style="background-color: #FFA07A; color: white;">蜜桃橙</div>
+                    <div class="color-tag" style="background-color: #FFD700; color: white;">阳光黄</div>
+                    <div class="color-tag" style="background-color: #98FB98; color: white;">薄荷绿</div>
+                    <div class="color-tag" style="background-color: #87CEEB; color: white;">天空蓝</div>
+                </div>
+            </div>
+
+            <!-- 分类推荐 -->
+            <div class="space-y-4">
+                <!-- 上衣 -->
+                <div class="category-card p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="font-bold text-gray-800">上衣推荐</h4>
+                        <button class="text-pink-500 text-sm">查看更多</button>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="item-card">
+                            <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=60" 
+                                 alt="粉色T恤" 
+                                 class="w-full item-image">
+                            <div class="p-2">
+                                <p class="text-sm font-medium">珊瑚粉T恤</p>
+                                <p class="text-xs text-gray-500">¥199</p>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea3f?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=60" 
+                                 alt="橙色衬衫" 
+                                 class="w-full item-image">
+                            <div class="p-2">
+                                <p class="text-sm font-medium">蜜桃橙衬衫</p>
+                                <p class="text-xs text-gray-500">¥299</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 下装 -->
+                <div class="category-card p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="font-bold text-gray-800">下装推荐</h4>
+                        <button class="text-pink-500 text-sm">查看更多</button>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="item-card">
+                            <img src="https://images.unsplash.com/photo-1549923746-c502d488b3ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=60" 
+                                 alt="浅色牛仔裤" 
+                                 class="w-full item-image">
+                            <div class="p-2">
+                                <p class="text-sm font-medium">浅色牛仔裤</p>
+                                <p class="text-xs text-gray-500">¥399</p>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=60" 
+                                 alt="米色休闲裤" 
+                                 class="w-full item-image">
+                            <div class="p-2">
+                                <p class="text-sm font-medium">米色休闲裤</p>
+                                <p class="text-xs text-gray-500">¥259</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部导航 -->
+        <div class="fixed bottom-0 left-0 right-0 bg-white border-t p-4">
+            <div class="flex justify-around">
+                <button class="text-gray-500" onclick="goHome()">
+                    <i class="fas fa-home"></i>
+                    <span class="text-xs block mt-1">首页</span>
+                </button>
+                <button class="text-gray-500" onclick="goTest()">
+                    <i class="fas fa-camera"></i>
+                    <span class="text-xs block mt-1">测试</span>
+                </button>
+                <button class="text-pink-500" onclick="goProfile()">
+                    <i class="fas fa-user"></i>
+                    <span class="text-xs block mt-1">我的</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function showFilter() {
+            alert('筛选功能开发中');
+        }
+
+        function goHome() {
+            window.location.href = 'home.html';
+        }
+
+        function goTest() {
+            window.location.href = 'test.html';
+        }
+
+        function goProfile() {
+            window.location.href = 'profile.html';
+        }
+    </script>
+</body>
+</html> 
