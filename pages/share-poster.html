@@ -18,37 +18,142 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             margin: 20px;
             position: relative;
+            max-width: 375px;
+            margin: 20px auto;
         }
         .poster-header {
             background: linear-gradient(135deg, #FF6B81, #5D68E2);
-            padding: 24px;
+            padding: 40px 32px;
             color: white;
+            position: relative;
+            overflow: hidden;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .poster-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>') repeat;
+            opacity: 0.1;
+            transform: rotate(-15deg);
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        .user-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            background-size: cover;
+            background-position: center;
+            margin-right: 16px;
+        }
+        .user-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .user-desc {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        .color-type-display {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
         }
         .color-circle {
-            width: 48px;
-            height: 48px;
+            width: 72px;
+            height: 72px;
             border-radius: 50%;
-            border: 3px solid rgba(255, 255, 255, 0.8);
+            border: 4px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            margin-right: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        .color-circle::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
+        }
+        .color-type-info {
+            flex: 1;
+        }
+        .color-type-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .color-type-desc {
+            font-size: 16px;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+        .color-type-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            backdrop-filter: blur(4px);
+            margin-top: 16px;
         }
         .color-swatch {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
+            width: 72px;
+            height: 72px;
+            border-radius: 20px;
             position: relative;
-            transition: transform 0.2s;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--color1), var(--color2));
         }
-        .color-swatch:active {
-            transform: scale(0.95);
+        .color-swatch::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+            pointer-events: none;
         }
         .color-swatch::after {
             content: attr(data-name);
             position: absolute;
-            bottom: -24px;
+            bottom: 12px;
             left: 50%;
             transform: translateX(-50%);
             white-space: nowrap;
             font-size: 12px;
-            color: #666;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            background: rgba(0,0,0,0.3);
+            padding: 4px 12px;
+            border-radius: 12px;
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            transition: all 0.3s;
+        }
+        .color-swatch:hover::after {
+            bottom: 8px;
+            opacity: 1;
         }
         .qr-code {
             width: 120px;
@@ -137,6 +242,57 @@
         .preview-hint.show {
             opacity: 1;
         }
+        .advice-card {
+            background: linear-gradient(135deg, #fff, #f8f9fa);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+        .advice-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #FF6B81, #5D68E2);
+        }
+        .advice-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        .advice-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FF6B81, #5D68E2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+        }
+        .advice-icon i {
+            color: white;
+            font-size: 20px;
+        }
+        .advice-content {
+            flex: 1;
+        }
+        .advice-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        .advice-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #666;
+        }
     </style>
 </head>
 <body>
@@ -157,39 +313,100 @@
             <div class="poster-preview" id="posterPreview">
                 <!-- 海报头部 -->
                 <div class="poster-header">
-                    <div class="flex items-center mb-4">
+                    <!-- 用户信息 -->
+                    <div class="user-info">
+                        <div class="user-avatar" id="userAvatar"></div>
+                        <div>
+                            <div class="user-name" id="userName">用户昵称</div>
+                            <div class="user-desc">已获得专业色彩分析</div>
+                        </div>
+                    </div>
+
+                    <!-- 色彩类型展示 -->
+                    <div class="color-type-display">
                         <div class="color-circle" id="colorTypeCircle"></div>
-                        <div class="ml-4">
-                            <h3 class="text-xl font-bold" id="colorTypeName">春季型</h3>
-                            <p class="text-sm opacity-80" id="colorTypeDesc">温暖明亮的色彩最适合你</p>
+                        <div class="color-type-info">
+                            <div class="color-type-name" id="colorTypeName">春季型</div>
+                            <div class="color-type-desc" id="colorTypeDesc">温暖明亮的色彩最适合你</div>
+                            <div class="color-type-badge">
+                                <i class="fas fa-certificate mr-2"></i>
+                                <span>专业色彩分析</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- 海报内容 -->
-                <div class="p-6">
+                <div class="p-8">
                     <!-- 专属色彩 -->
-                    <div class="mb-8">
-                        <h4 class="text-gray-800 font-medium mb-4">你的专属色彩</h4>
-                        <div class="flex justify-between" id="colorSwatches">
+                    <div class="mb-12">
+                        <h4 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                            <i class="fas fa-palette text-pink-500 mr-2"></i>
+                            你的专属色彩
+                        </h4>
+                        <div class="grid grid-cols-4 gap-4" id="colorSwatches">
                             <!-- 动态生成色彩卡片 -->
                         </div>
                     </div>
 
-                    <!-- 穿搭建议 -->
-                    <div class="mb-8">
-                        <h4 class="text-gray-800 font-medium mb-2">穿搭建议</h4>
-                        <p class="text-sm text-gray-600 leading-relaxed" id="styleAdvice">
-                            选择明亮温暖的色调，搭配浅色系或白色打底。建议选择具有光泽感的面料，避免深沉暗淡的色彩。
-                        </p>
+                    <!-- 核心建议 -->
+                    <div class="mb-12">
+                        <h4 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                            <i class="fas fa-lightbulb text-pink-500 mr-2"></i>
+                            核心建议
+                        </h4>
+                        <div class="space-y-6">
+                            <!-- 穿搭建议 -->
+                            <div class="advice-card">
+                                <div class="flex items-start">
+                                    <div class="advice-icon">
+                                        <i class="fas fa-tshirt"></i>
+                                    </div>
+                                    <div class="advice-content">
+                                        <div class="advice-title">穿搭建议</div>
+                                        <div class="advice-text" id="styleAdvice"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 彩妆建议 -->
+                            <div class="advice-card">
+                                <div class="flex items-start">
+                                    <div class="advice-icon">
+                                        <i class="fas fa-magic"></i>
+                                    </div>
+                                    <div class="advice-content">
+                                        <div class="advice-title">彩妆建议</div>
+                                        <div class="advice-text" id="makeupAdvice"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 发色建议 -->
+                            <div class="advice-card">
+                                <div class="flex items-start">
+                                    <div class="advice-icon">
+                                        <i class="fas fa-cut"></i>
+                                    </div>
+                                    <div class="advice-content">
+                                        <div class="advice-title">发色建议</div>
+                                        <div class="advice-text" id="hairAdvice"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- 底部信息 -->
                     <div class="text-center">
-                        <div class="qr-code mb-3">
-                            <i class="fas fa-qrcode text-4xl text-gray-400"></i>
+                        <div class="qr-code mb-4">
+                            <i class="fas fa-qrcode text-5xl text-gray-400"></i>
                         </div>
-                        <p class="text-sm text-gray-500">长按识别，测试你的专属色彩</p>
+                        <p class="text-sm text-gray-500 mb-3">扫码测试你的专属色彩</p>
+                        <div class="flex justify-center space-x-3">
+                            <span class="text-xs text-pink-500 bg-pink-50 px-3 py-1 rounded-full">#色彩知己</span>
+                            <span class="text-xs text-pink-500 bg-pink-50 px-3 py-1 rounded-full">#发现我的专属色彩</span>
+                        </div>
                     </div>
                 </div>
 
@@ -247,13 +464,20 @@
                 colorType: params.get('colorType') || '春季型',
                 colorDesc: params.get('colorDesc') || '温暖明亮的色彩最适合你',
                 colors: JSON.parse(params.get('colors') || '[]'),
-                styleAdvice: params.get('styleAdvice') || '选择明亮温暖的色调，搭配浅色系或白色打底。建议选择具有光泽感的面料，避免深沉暗淡的色彩。'
+                styleAdvice: params.get('styleAdvice') || '选择明亮温暖的色调，搭配浅色系或白色打底。建议选择具有光泽感的面料，避免深沉暗淡的色彩。',
+                makeupAdvice: params.get('makeupAdvice') || '推荐使用暖色调的底妆，搭配珊瑚色系的口红和眼影，打造自然明亮的妆容。',
+                hairAdvice: params.get('hairAdvice') || '适合温暖明亮的发色，如蜜糖棕、金棕色等，避免过于冷色调的发色。',
+                avatar: params.get('avatar') || 'https://api.dicebear.com/7.x/avataaars/svg?seed=user',
+                username: params.get('username') || '用户昵称'
             };
         }
 
         // 初始化页面数据
         function initPage() {
             const data = getUrlParams();
+            
+            // 设置用户信息
+            document.getElementById('userAvatar').style.backgroundImage = `url(${data.avatar})`;
             
             // 设置色彩类型
             document.getElementById('colorTypeName').textContent = data.colorType;
@@ -263,11 +487,16 @@
             // 设置专属色彩
             const colorSwatches = document.getElementById('colorSwatches');
             colorSwatches.innerHTML = data.colors.map(color => `
-                <div class="color-swatch" style="background: ${color.value}" data-name="${color.name}"></div>
+                <div class="color-swatch" 
+                     style="--color1: ${color.value}; --color2: ${color.value}80;"
+                     data-name="${color.name}">
+                </div>
             `).join('');
             
-            // 设置穿搭建议
+            // 设置建议内容
             document.getElementById('styleAdvice').textContent = data.styleAdvice;
+            document.getElementById('makeupAdvice').textContent = data.makeupAdvice;
+            document.getElementById('hairAdvice').textContent = data.hairAdvice;
         }
 
         // 获取色彩类型对应的颜色
