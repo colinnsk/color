@@ -246,8 +246,25 @@
 
         // 分享结果
         function shareResult() {
-            // 实现分享结果的逻辑
-            alert('分享成功');
+            // 收集需要分享的数据
+            const colorType = document.querySelector('.absolute.-bottom-2.-right-2').textContent;
+            const colorDesc = document.querySelector('.text-sm.text-gray-500').textContent;
+            const colors = Array.from(document.querySelectorAll('.color-swatch')).map(swatch => ({
+                name: swatch.querySelector('.text-xs.font-medium').textContent,
+                value: swatch.style.backgroundColor
+            }));
+            const styleAdvice = document.querySelector('.text-sm.text-gray-600.leading-relaxed').textContent;
+
+            // 构建URL参数
+            const params = new URLSearchParams({
+                colorType,
+                colorDesc,
+                colors: JSON.stringify(colors),
+                styleAdvice
+            });
+
+            // 跳转到分享海报页
+            window.location.href = `share-poster.html?${params.toString()}`;
         }
     </script>
 </body>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分享海报 - 色彩测试</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .share-container {
+            min-height: 100vh;
+            background: #f8f9fa;
+        }
+        .poster-preview {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            position: relative;
+        }
+        .poster-header {
+            background: linear-gradient(135deg, #FF6B81, #5D68E2);
+            padding: 24px;
+            color: white;
+        }
+        .color-circle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.8);
+        }
+        .color-swatch {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            position: relative;
+            transition: transform 0.2s;
+        }
+        .color-swatch:active {
+            transform: scale(0.95);
+        }
+        .color-swatch::after {
+            content: attr(data-name);
+            position: absolute;
+            bottom: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-size: 12px;
+            color: #666;
+        }
+        .qr-code {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .share-actions {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 20px 20px calc(20px + env(safe-area-inset-bottom));
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .share-button {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: transform 0.2s;
+        }
+        .share-button:active {
+            transform: scale(0.95);
+        }
+        .share-button i {
+            font-size: 24px;
+            margin-bottom: 6px;
+        }
+        .share-button span {
+            font-size: 12px;
+        }
+        .watermark {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: #999;
+            white-space: nowrap;
+        }
+        .tips {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        .tips.show {
+            opacity: 1;
+        }
+        .preview-hint {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        .preview-hint.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="share-container pb-32">
+        <!-- 顶部导航 -->
+        <div class="fixed top-0 left-0 right-0 bg-white z-10 border-b">
+            <div class="flex items-center justify-between p-4">
+                <button class="text-gray-500" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1 class="text-lg font-bold text-gray-800">分享海报</h1>
+                <div class="w-8"></div>
+            </div>
+        </div>
+
+        <!-- 海报预览 -->
+        <div class="pt-16 px-4">
+            <div class="poster-preview" id="posterPreview">
+                <!-- 海报头部 -->
+                <div class="poster-header">
+                    <div class="flex items-center mb-4">
+                        <div class="color-circle" id="colorTypeCircle"></div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-bold" id="colorTypeName">春季型</h3>
+                            <p class="text-sm opacity-80" id="colorTypeDesc">温暖明亮的色彩最适合你</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 海报内容 -->
+                <div class="p-6">
+                    <!-- 专属色彩 -->
+                    <div class="mb-8">
+                        <h4 class="text-gray-800 font-medium mb-4">你的专属色彩</h4>
+                        <div class="flex justify-between" id="colorSwatches">
+                            <!-- 动态生成色彩卡片 -->
+                        </div>
+                    </div>
+
+                    <!-- 穿搭建议 -->
+                    <div class="mb-8">
+                        <h4 class="text-gray-800 font-medium mb-2">穿搭建议</h4>
+                        <p class="text-sm text-gray-600 leading-relaxed" id="styleAdvice">
+                            选择明亮温暖的色调，搭配浅色系或白色打底。建议选择具有光泽感的面料，避免深沉暗淡的色彩。
+                        </p>
+                    </div>
+
+                    <!-- 底部信息 -->
+                    <div class="text-center">
+                        <div class="qr-code mb-3">
+                            <i class="fas fa-qrcode text-4xl text-gray-400"></i>
+                        </div>
+                        <p class="text-sm text-gray-500">长按识别，测试你的专属色彩</p>
+                    </div>
+                </div>
+
+                <!-- 水印 -->
+                <div class="watermark">
+                    色彩知己 - 你的专属色彩顾问
+                </div>
+
+                <!-- 预览提示 -->
+                <div class="preview-hint" id="previewHint">
+                    <div class="text-center">
+                        <i class="fas fa-eye text-2xl mb-2"></i>
+                        <p>长按预览大图</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 分享操作栏 -->
+        <div class="share-actions">
+            <div class="flex justify-around mb-6">
+                <button class="share-button bg-blue-50" onclick="shareToWechat()">
+                    <i class="fab fa-weixin text-green-500"></i>
+                    <span class="text-gray-600">微信好友</span>
+                </button>
+                <button class="share-button bg-green-50" onclick="shareToMoments()">
+                    <i class="fas fa-users text-green-600"></i>
+                    <span class="text-gray-600">朋友圈</span>
+                </button>
+                <button class="share-button bg-red-50" onclick="saveImage()">
+                    <i class="fas fa-download text-red-500"></i>
+                    <span class="text-gray-600">保存图片</span>
+                </button>
+            </div>
+            <button class="w-full bg-pink-500 text-white py-4 rounded-full font-medium text-lg" 
+                    onclick="generatePoster()">
+                生成海报
+            </button>
+        </div>
+
+        <!-- 操作提示 -->
+        <div class="tips" id="tips"></div>
+    </div>
+
+    <script>
+        let isGenerating = false;
+        const tips = document.getElementById('tips');
+        const previewHint = document.getElementById('previewHint');
+        const posterPreview = document.getElementById('posterPreview');
+
+        // 从URL参数获取数据
+        function getUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                colorType: params.get('colorType') || '春季型',
+                colorDesc: params.get('colorDesc') || '温暖明亮的色彩最适合你',
+                colors: JSON.parse(params.get('colors') || '[]'),
+                styleAdvice: params.get('styleAdvice') || '选择明亮温暖的色调，搭配浅色系或白色打底。建议选择具有光泽感的面料，避免深沉暗淡的色彩。'
+            };
+        }
+
+        // 初始化页面数据
+        function initPage() {
+            const data = getUrlParams();
+            
+            // 设置色彩类型
+            document.getElementById('colorTypeName').textContent = data.colorType;
+            document.getElementById('colorTypeDesc').textContent = data.colorDesc;
+            document.getElementById('colorTypeCircle').style.background = getColorTypeColor(data.colorType);
+            
+            // 设置专属色彩
+            const colorSwatches = document.getElementById('colorSwatches');
+            colorSwatches.innerHTML = data.colors.map(color => `
+                <div class="color-swatch" style="background: ${color.value}" data-name="${color.name}"></div>
+            `).join('');
+            
+            // 设置穿搭建议
+            document.getElementById('styleAdvice').textContent = data.styleAdvice;
+        }
+
+        // 获取色彩类型对应的颜色
+        function getColorTypeColor(type) {
+            const colors = {
+                '春季型': '#FF6B81',
+                '夏季型': '#5D68E2',
+                '秋季型': '#FFA07A',
+                '冬季型': '#4B0082'
+            };
+            return colors[type] || '#FF6B81';
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        function showTip(message) {
+            tips.textContent = message;
+            tips.classList.add('show');
+            setTimeout(() => {
+                tips.classList.remove('show');
+            }, 2000);
+        }
+
+        function shareToWechat() {
+            if (!isGenerating) {
+                showTip('请先生成海报');
+                return;
+            }
+            showTip('已分享给微信好友');
+        }
+
+        function shareToMoments() {
+            if (!isGenerating) {
+                showTip('请先生成海报');
+                return;
+            }
+            showTip('已分享到朋友圈');
+        }
+
+        function saveImage() {
+            if (!isGenerating) {
+                showTip('请先生成海报');
+                return;
+            }
+            showTip('已保存到相册');
+        }
+
+        function generatePoster() {
+            if (isGenerating) {
+                showTip('海报已生成');
+                return;
+            }
+            
+            const btn = event.target;
+            btn.textContent = '生成中...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                isGenerating = true;
+                btn.textContent = '重新生成';
+                btn.disabled = false;
+                showTip('海报生成成功');
+                
+                // 显示预览提示
+                previewHint.classList.add('show');
+                setTimeout(() => {
+                    previewHint.classList.remove('show');
+                }, 2000);
+            }, 1500);
+        }
+
+        // 长按预览
+        let pressTimer;
+        posterPreview.addEventListener('touchstart', () => {
+            if (!isGenerating) return;
+            pressTimer = setTimeout(() => {
+                showTip('查看大图');
+            }, 500);
+        });
+
+        posterPreview.addEventListener('touchend', () => {
+            clearTimeout(pressTimer);
+        });
+
+        posterPreview.addEventListener('touchmove', () => {
+            clearTimeout(pressTimer);
+        });
+
+        // 初始化页面
+        initPage();
+    </script>
+</body>
+</html> 
